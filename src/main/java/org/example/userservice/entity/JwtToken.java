@@ -2,22 +2,26 @@ package org.example.userservice.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import java.time.LocalDateTime;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "otp")
-public class Otp {
+@Table(name = "jwt_token")
+public class JwtToken {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String otp;
-    private LocalDateTime expirationTime;
+    private String token;
+
+    @Enumerated(EnumType.STRING)
+    private TokenType tokenType = TokenType.BEARER;
+
+    private boolean revoked;
+    private boolean expired;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
