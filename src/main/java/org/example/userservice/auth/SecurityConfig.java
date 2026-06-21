@@ -49,7 +49,11 @@ public class SecurityConfig {
                                 "/api/auth/login",
                                 "/api/auth/activate",
                                 "/api/auth/checkToken",
-                                "/api/auth/regenerateOtp"
+                                "/api/auth/regenerateOtp",
+                                "/swagger-ui/**",
+                                "/swagger-ui.html",
+                                "/api-docs/**",
+                                "/v3/api-docs/**"
                         ).permitAll()
                         .anyRequest().authenticated()
                 )

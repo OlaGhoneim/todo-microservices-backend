@@ -1,25 +1,25 @@
 package org.example.userservice.service;
 
 import io.jsonwebtoken.*;
+import io.jsonwebtoken.security.Keys;
 import jakarta.servlet.http.HttpServletRequest;
 import org.example.userservice.entity.User;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import java.security.Key;
 import java.util.Date;
 import java.util.Map;
 
 @Service
 public class JwtService {
 
-    private final String secret_key = "mysecretkeymysecretkeymysecretkey12";
-    private final long accessTokenValidity = 30 * 60 * 1000;
-    private final JwtParser jwtParser;
+    private final Key SECRET_KEY = Keys.hmacShaKeyFor(
+            "mysecretkeymysecretkeymysecretkeymysecretkey".getBytes()
+    );
 
-    public JwtService() {
-        this.jwtParser = Jwts.parser().setSigningKey(secret_key);
-    }
+    private final long accessTokenValidity = 30 * 60 * 1000;
 
     public String createToken(User user, Map<String, Object> extraClaims) {
         return Jwts.builder()
@@ -27,7 +27,7 @@ public class JwtService {
                 .setSubject(user.getEmail())
                 .setExpiration(new Date(System.currentTimeMillis() + accessTokenValidity))
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .signWith(SignatureAlgorithm.HS256, secret_key)
+                .signWith(SECRET_KEY)
                 .compact();
     }
 
@@ -36,7 +36,11 @@ public class JwtService {
     }
 
     private Claims parseJwtClaims(String token) {
-        return jwtParser.parseClaimsJws(token).getBody();
+        return Jwts.parserBuilder()
+                .setSigningKey(SECRET_KEY)
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
     }
 
     public String resolveToken(HttpServletRequest request) {

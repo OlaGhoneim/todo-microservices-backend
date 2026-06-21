@@ -15,7 +15,7 @@ public class EmailService {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(toEmail);
         message.setSubject("Your OTP Code");
-        message.setText("Your OTP code is: " + otp + "\nIt expires in 10 minutes.");
+        message.setText("Your OTP code is: " + otp + "\nIt expires in 30 minutes.");
         mailSender.send(message);
     }
 }
