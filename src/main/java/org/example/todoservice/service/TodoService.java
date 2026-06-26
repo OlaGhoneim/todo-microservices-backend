@@ -32,6 +32,7 @@ public class TodoService {
 
         Item saved = itemRepository.save(item);
         return mapToResponse(saved);
+
     }
 
     public void deleteItem(Long id) {
@@ -61,7 +62,7 @@ public class TodoService {
     }
 
     public List<ItemResponse> searchByTitle(String title) {
-        List<Item> items = itemRepository.findByTitleContainingIgnoreCase(title);
+        List<Item> items = itemRepository.searchItemByTitleIgnoreCaseContaining(title);
         if (items.isEmpty()) {
             throw new ResourceNotFoundException("No items found with title: " + title);
         }

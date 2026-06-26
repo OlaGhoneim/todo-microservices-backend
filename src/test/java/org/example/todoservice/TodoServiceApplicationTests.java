@@ -126,7 +126,7 @@ public class TodoServiceApplicationTests {
 
     @Test
     void searchByTitle_ShouldReturnList_WhenItemsExist() {
-        when(itemRepository.findByTitleContainingIgnoreCase("Test"))
+        when(itemRepository.searchItemByTitleIgnoreCaseContaining("Test"))
                 .thenReturn(List.of(item));
 
         List<ItemResponse> responses = todoService.searchByTitle("Test");
@@ -138,7 +138,7 @@ public class TodoServiceApplicationTests {
 
     @Test
     void searchByTitle_ShouldThrowException_WhenNoItemsFound() {
-        when(itemRepository.findByTitleContainingIgnoreCase("xyz"))
+        when(itemRepository.searchItemByTitleIgnoreCaseContaining("xyz"))
                 .thenReturn(List.of());
 
         assertThrows(ResourceNotFoundException.class,

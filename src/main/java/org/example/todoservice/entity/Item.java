@@ -3,6 +3,8 @@ package org.example.todoservice.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import javax.lang.model.element.Name;
+
 @Entity
 @Table(name = "items")
 @Getter
@@ -20,7 +22,8 @@ public class Item {
     @Column(name = "user_id")
     private Long userId;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "item_details_id", referencedColumnName = "id")
+
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="item_details_id")
     private ItemDetails itemDetails;
 }

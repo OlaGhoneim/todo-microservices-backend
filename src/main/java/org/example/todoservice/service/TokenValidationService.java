@@ -14,7 +14,7 @@ public class TokenValidationService {
                 .baseUrl(userServiceUrl)
                 .build();
     }
-
+//Todo feign client
     public boolean validateToken(String token) {
         try {
             String response = webClient.get()

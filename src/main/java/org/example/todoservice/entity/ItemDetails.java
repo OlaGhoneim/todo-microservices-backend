@@ -18,7 +18,7 @@ public class ItemDetails {
 
     private String description;
 
-    @Column(name = "created_at")
+
     private LocalDateTime createdAt;
 
     private String priority;

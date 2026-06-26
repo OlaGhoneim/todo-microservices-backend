@@ -21,9 +21,7 @@ public class TodoController {
     private final TokenValidationService tokenValidationService;
 
     @PostMapping("/add")
-    public ResponseEntity<?> addItem(
-            @Valid @RequestBody ItemRequest request,
-            @RequestHeader("Authorization") String token) {
+    public ResponseEntity<?> addItem(@Valid @RequestBody ItemRequest request, @RequestHeader("Authorization") String token) {
         if (!tokenValidationService.validateToken(token)) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body("Invalid or expired token");
@@ -81,3 +79,4 @@ public class TodoController {
         return ResponseEntity.ok(response);
     }
 }
+
