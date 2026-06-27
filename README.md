@@ -32,7 +32,7 @@ validation through the **User Service**.
 | GET | `/search/{id}` | - | Authorization (JWT) | Search item by ID |
 | GET | `/search?title=` | - | Authorization (JWT) | Search items by title |
 
-> ⚠️ Every API call validates the JWT token by calling `/checkToken` on the **User Service** before processing.
+>  Every API call validates the JWT token by calling `/checkToken` on the **User Service** before processing.
 
 ## Request Body (ItemRequest)
 
