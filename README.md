@@ -30,7 +30,7 @@ git checkout user-service   # or todo-service
 mvn spring-boot:run
 ```
 
-## 📁 Branch Structure
+## Branch Structure
 ```
 master        → project overview (this page)
 user-service  → UserService source code
