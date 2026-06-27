@@ -201,7 +201,4 @@ http://localhost:8080/swagger-ui/index.html
 # 3. Configure your mail credentials in application.properties
 mvn spring-boot:run
 ```
-```
-
----
 
