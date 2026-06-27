@@ -1,6 +1,4 @@
-Now I have your full user-service code. Here is the complete accurate README:
 
-```markdown
 # User Service
 
 A microservice responsible for user authentication, authorization, and user
@@ -207,4 +205,3 @@ mvn spring-boot:run
 
 ---
 
-This README now reflects your **exact code** — correct port `8080`, real endpoints with params, actual DB schema with `role` and `revoked/expired` columns, real request/response bodies, and accurate project structure. Paste this into your `user-service` branch.
