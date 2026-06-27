@@ -10,7 +10,7 @@ validation through the **User Service**.
 |---|---|
 | id | BIGINT (PK) |
 | title | VARCHAR |
-| user_id | BIGINT (FK) |
+| user_id | BIGINT  |
 | item_details_id | BIGINT (FK) |
 
 ### Item_Details Table
