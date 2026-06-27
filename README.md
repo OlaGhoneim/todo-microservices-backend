@@ -1,38 +1,36 @@
-## Todo Microservices Backend
+# Todo Service
 
-A microservices-based backend built with **Spring Boot 3.x**, featuring JWT authentication,
-OTP email verification, and full Todo management.
+A microservice responsible for all Todo CRUD operations, secured via JWT token 
+validation through the **User Service**.
 
-## Services
+## Database Schema
 
-| Service | Branch | Description | Port |
-|---|---|---|---|
-| user-service | [`user-service`](../../tree/user-service) | Registration, OTP, JWT Auth | 8081 |
-| todo-service | [`todo-service`](../../tree/todo-service) | Todo CRUD operations | 8082 |
+### Items Table
+| Column | Type |
+|---|---|
+| id | BIGINT (PK) |
+| title | VARCHAR |
+| user_id | BIGINT (FK) |
+| item_details_id | BIGINT (FK) |
 
-## Tech Stack
-- Java 17 + Spring Boot 3.x
-- Spring Security (JWT)
-- MySQL + Spring Data JPA
-- Swagger / OpenAPI 3
-- JUnit 5 + Mockito
+### Item_Details Table
+| Column | Type |
+|---|---|
+| id | BIGINT (PK) |
+| description | TEXT |
+| created_at | DATETIME |
+| priority | ENUM |
+| status | ENUM |
 
-## Getting Started
+## API Endpoints
 
-```bash
-# Clone the repo
-git clone https://github.com/OlaGhoneim/todo-microservices-backend.git
+| Method | Endpoint | Body | Header | Description |
+|---|---|---|---|---|
+| POST | `/add` | Item details (JSON) | JWT Token | Add new todo item |
+| DELETE | `/delete/{id}` | - | JWT Token | Delete item by ID |
+| PUT | `/update/{id}` | Item details (JSON) | JWT Token | Update item by ID |
+| GET | `/search/{id}` | - | JWT Token | Search item by ID |
 
-# Switch to a service
-git checkout user-service   # or todo-service
+> ⚠️ Every API call validates the JWT token by calling `/checkToken` on the **User Service** first.
 
-# Run
-mvn spring-boot:run
-```
-
-##  Branch Structure
-```
-master        → project overview (this page)
-user-service  → UserService source code
-todo-service  → TodoService source code
-```
+## 🔐 Security Flow
